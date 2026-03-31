@@ -1,0 +1,28 @@
+; Engine configuration file.
+; This file is best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Weapon Gouelite"
+config/description="极简横版武器进化爬塔 Roguelite MVP"
+config/features=PackedStringArray("4.6")
+run/max_fps=120
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/canvas_textures/default_texture_filter=0
