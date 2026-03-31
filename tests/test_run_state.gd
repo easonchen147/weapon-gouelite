@@ -1,6 +1,6 @@
 extends RefCounted
 
-const SCRIPT_PATH := "res://autoload/run_state.gd"
+const SCRIPT_PATH = "res://autoload/run_state.gd"
 
 func run() -> Array[String]:
     var failures: Array[String] = []
@@ -9,7 +9,7 @@ func run() -> Array[String]:
         failures.append("run_state.gd should exist")
         return failures
 
-    var script := load(SCRIPT_PATH)
+    var script = load(SCRIPT_PATH)
     if script == null or not (script is Script) or not script.can_instantiate():
         failures.append("run_state.gd should load successfully")
         return failures

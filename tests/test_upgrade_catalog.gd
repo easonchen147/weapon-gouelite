@@ -1,6 +1,6 @@
 extends RefCounted
 
-const SCRIPT_PATH := "res://scripts/data/upgrade_catalog.gd"
+const SCRIPT_PATH = "res://scripts/data/upgrade_catalog.gd"
 
 func run() -> Array[String]:
     var failures: Array[String] = []
@@ -9,7 +9,7 @@ func run() -> Array[String]:
         failures.append("upgrade_catalog.gd should exist")
         return failures
 
-    var script := load(SCRIPT_PATH)
+    var script = load(SCRIPT_PATH)
     if script == null or not (script is Script) or not script.can_instantiate():
         failures.append("upgrade_catalog.gd should load successfully")
         return failures
@@ -20,9 +20,9 @@ func run() -> Array[String]:
         failures.append("UpgradeCatalog should expose roll_choices()")
         return failures
 
-    var rng := RandomNumberGenerator.new()
+    var rng = RandomNumberGenerator.new()
     rng.seed = 20260331
-    var context := {
+    var context = {
         "weapon_levels": {"boomerang_sword": 1},
         "owned_weapons": ["boomerang_sword"],
         "stats": {
@@ -44,7 +44,7 @@ func run() -> Array[String]:
         failures.append("roll_choices() should return exactly 3 choices")
         return failures
 
-    var ids := {}
+    var ids = {}
     for choice in choices:
         if not choice.has("id"):
             failures.append("Every upgrade choice should include an id")

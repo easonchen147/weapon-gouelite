@@ -1,10 +1,13 @@
 extends SceneTree
 
-const TEST_SCRIPTS := [
+const TEST_SCRIPTS = [
     "res://tests/test_weapon_catalog.gd",
     "res://tests/test_upgrade_catalog.gd",
     "res://tests/test_save_manager.gd",
     "res://tests/test_run_state.gd",
+    "res://tests/test_enemy_spawner.gd",
+    "res://tests/test_ad_service.gd",
+    "res://tests/test_scene_smoke.gd",
 ]
 
 func _initialize() -> void:
@@ -12,7 +15,7 @@ func _initialize() -> void:
     print("Running Weapon Gouelite tests...")
 
     for test_path in TEST_SCRIPTS:
-        var script := load(test_path)
+        var script = load(test_path)
         var suite = script.new()
         var failures: Array = suite.run()
 

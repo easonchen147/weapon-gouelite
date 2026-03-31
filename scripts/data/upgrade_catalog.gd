@@ -1,9 +1,9 @@
 class_name UpgradeCatalog
 extends RefCounted
 
-const WeaponCatalogScript := preload("res://scripts/data/weapon_catalog.gd")
+const WeaponCatalogScript = preload("res://scripts/data/weapon_catalog.gd")
 
-const GENERIC_UPGRADES := [
+const GENERIC_UPGRADES = [
     {"id": "stat_attack_up", "name": "攻击强化", "type": "stat", "key": "attack_bonus", "value": 0.20, "description": "攻击力 +20%"},
     {"id": "stat_speed_up", "name": "高速打击", "type": "stat", "key": "attack_speed_bonus", "value": 0.15, "description": "攻速 +15%"},
     {"id": "stat_crit_up", "name": "致命一击", "type": "stat", "key": "crit_chance_bonus", "value": 0.10, "description": "暴击率 +10%"},
@@ -26,7 +26,7 @@ func build_candidate_pool(context: Dictionary) -> Array[Dictionary]:
     var weapon_levels: Dictionary = context.get("weapon_levels", {})
 
     for weapon_id in _weapon_catalog.get_all_weapon_ids():
-        var current_level := int(weapon_levels.get(weapon_id, 0))
+        var current_level = int(weapon_levels.get(weapon_id, 0))
         var max_level: int = _weapon_catalog.get_max_level(weapon_id)
 
         if current_level <= 0 and not owned_weapons.has(weapon_id):
@@ -52,17 +52,17 @@ func build_candidate_pool(context: Dictionary) -> Array[Dictionary]:
     return pool
 
 func roll_choices(context: Dictionary, count: int = 3, rng: RandomNumberGenerator = null) -> Array:
-    var generator := rng
+    var generator = rng
     if generator == null:
         generator = RandomNumberGenerator.new()
         generator.randomize()
 
-    var pool := build_candidate_pool(context)
+    var pool = build_candidate_pool(context)
     var choices: Array = []
-    var used_ids := {}
+    var used_ids = {}
 
     while choices.size() < count and not pool.is_empty():
-        var index := generator.randi_range(0, pool.size() - 1)
+        var index = generator.randi_range(0, pool.size() - 1)
         var candidate: Dictionary = pool[index]
         pool.remove_at(index)
 

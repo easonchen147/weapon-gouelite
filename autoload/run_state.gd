@@ -1,15 +1,14 @@
-class_name RunState
 extends Node
 
-const WeaponCatalogScript := preload("res://scripts/data/weapon_catalog.gd")
-const BalanceScript := preload("res://scripts/data/balance.gd")
+const WeaponCatalogScript = preload("res://scripts/data/weapon_catalog.gd")
+const BalanceScript = preload("res://scripts/data/balance.gd")
 
 var _weapon_catalog: RefCounted = WeaponCatalogScript.new()
 var _state: Dictionary = {}
 
 func start_new_run(meta_save: Dictionary = {}) -> void:
-    var attack_meta := int(meta_save.get("meta_upgrades", {}).get("attack", 0))
-    var health_meta := int(meta_save.get("meta_upgrades", {}).get("health", 0))
+    var attack_meta = int(meta_save.get("meta_upgrades", {}).get("attack", 0))
+    var health_meta = int(meta_save.get("meta_upgrades", {}).get("health", 0))
     _state = {
         "floor": 1,
         "level": 1,
@@ -47,7 +46,7 @@ func get_snapshot() -> Dictionary:
     return _state.duplicate(true)
 
 func add_experience(amount: int) -> int:
-    var levels_gained := 0
+    var levels_gained = 0
     _state["experience"] = int(_state["experience"]) + amount
 
     while int(_state["experience"]) >= int(_state["experience_to_next"]):
@@ -68,18 +67,18 @@ func add_kill() -> void:
 func apply_upgrade(upgrade: Dictionary) -> void:
     match String(upgrade.get("type", "")):
         "stat":
-            var key := String(upgrade.get("key", ""))
+            var key = String(upgrade.get("key", ""))
             var value: Variant = upgrade.get("value", 0)
             if _state["stats"].has(key):
                 _state["stats"][key] = _state["stats"][key] + value
         "weapon_unlock":
-            var weapon_id := String(upgrade.get("weapon_id", ""))
+            var weapon_id = String(upgrade.get("weapon_id", ""))
             if not _state["owned_weapons"].has(weapon_id):
                 _state["owned_weapons"].append(weapon_id)
                 _state["weapon_levels"][weapon_id] = 1
         "weapon_upgrade":
-            var target_weapon := String(upgrade.get("weapon_id", ""))
-            var next_level := int(upgrade.get("target_level", 1))
+            var target_weapon = String(upgrade.get("weapon_id", ""))
+            var next_level = int(upgrade.get("target_level", 1))
             if not _state["owned_weapons"].has(target_weapon):
                 _state["owned_weapons"].append(target_weapon)
             _state["weapon_levels"][target_weapon] = clamp(next_level, 1, _weapon_catalog.get_max_level(target_weapon))

@@ -1,6 +1,6 @@
 extends RefCounted
 
-const SCRIPT_PATH := "res://scripts/data/weapon_catalog.gd"
+const SCRIPT_PATH = "res://scripts/data/weapon_catalog.gd"
 
 func run() -> Array[String]:
     var failures: Array[String] = []
@@ -9,7 +9,7 @@ func run() -> Array[String]:
         failures.append("weapon_catalog.gd should exist")
         return failures
 
-    var script := load(SCRIPT_PATH)
+    var script = load(SCRIPT_PATH)
     if script == null or not (script is Script) or not script.can_instantiate():
         failures.append("weapon_catalog.gd should load successfully")
         return failures
@@ -21,7 +21,7 @@ func run() -> Array[String]:
         return failures
 
     var weapon_ids: Array = catalog.get_all_weapon_ids()
-    var required_ids := ["boomerang_sword", "split_bow", "flame_staff", "thunder_hammer"]
+    var required_ids = ["boomerang_sword", "split_bow", "flame_staff", "thunder_hammer"]
 
     for weapon_id in required_ids:
         if not weapon_ids.has(weapon_id):

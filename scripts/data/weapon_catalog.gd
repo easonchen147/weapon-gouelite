@@ -1,7 +1,7 @@
 class_name WeaponCatalog
 extends RefCounted
 
-const WEAPONS := {
+const WEAPONS = {
     "boomerang_sword": {
         "name": "回旋剑",
         "summary": "中距离回旋清怪，进化后形成剑环。",

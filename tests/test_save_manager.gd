@@ -1,6 +1,6 @@
 extends RefCounted
 
-const SCRIPT_PATH := "res://autoload/save_manager.gd"
+const SCRIPT_PATH = "res://autoload/save_manager.gd"
 
 func run() -> Array[String]:
     var failures: Array[String] = []
@@ -9,7 +9,7 @@ func run() -> Array[String]:
         failures.append("save_manager.gd should exist")
         return failures
 
-    var script := load(SCRIPT_PATH)
+    var script = load(SCRIPT_PATH)
     if script == null or not (script is Script) or not script.can_instantiate():
         failures.append("save_manager.gd should load successfully")
         return failures
@@ -36,10 +36,10 @@ func run() -> Array[String]:
         failures.append("SaveManager should support save/load roundtrip")
         return failures
 
-    var temp_path := "user://weapon_gouelite_test_save.json"
+    var temp_path = "user://weapon_gouelite_test_save.json"
     save_manager.set_save_path_override(temp_path)
 
-    var modified := defaults.duplicate(true)
+    var modified = defaults.duplicate(true)
     modified["highest_floor"] = 7
     modified["essence"] = 42
     modified["meta_upgrades"]["attack"] = 2
