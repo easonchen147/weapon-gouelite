@@ -6,13 +6,11 @@ const WeaponCatalogScript = preload("res://scripts/data/weapon_catalog.gd")
 const GENERIC_UPGRADES = [
     {"id": "stat_attack_up", "name": "攻击强化", "type": "stat", "key": "attack_bonus", "value": 0.20, "description": "攻击力 +20%"},
     {"id": "stat_speed_up", "name": "高速打击", "type": "stat", "key": "attack_speed_bonus", "value": 0.15, "description": "攻速 +15%"},
-    {"id": "stat_crit_up", "name": "致命一击", "type": "stat", "key": "crit_chance_bonus", "value": 0.10, "description": "暴击率 +10%"},
     {"id": "stat_health_up", "name": "强健体魄", "type": "stat", "key": "max_health_bonus", "value": 25, "description": "最大生命 +25"},
     {"id": "stat_move_up", "name": "轻盈步伐", "type": "stat", "key": "move_speed_bonus", "value": 0.12, "description": "移速 +12%"},
     {"id": "mechanic_range_up", "name": "范围扩张", "type": "stat", "key": "range_bonus", "value": 0.18, "description": "攻击范围 +18%"},
     {"id": "mechanic_split_up", "name": "分裂强化", "type": "stat", "key": "split_bonus", "value": 1, "description": "分裂 +1"},
     {"id": "mechanic_chain_up", "name": "连锁强化", "type": "stat", "key": "chain_bonus", "value": 1, "description": "连锁目标 +1"},
-    {"id": "mechanic_lifesteal_up", "name": "嗜血战意", "type": "stat", "key": "lifesteal_bonus", "value": 0.02, "description": "吸血 +2%"},
 ]
 
 var _weapon_catalog: RefCounted = WeaponCatalogScript.new()

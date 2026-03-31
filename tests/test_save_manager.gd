@@ -56,5 +56,18 @@ func run() -> Array[String]:
     if loaded.get("essence", -1) != 42:
         failures.append("Loaded save should preserve essence")
 
+    var file := FileAccess.open(temp_path, FileAccess.WRITE)
+    file.store_string("{\"highest_floor\": 3, \"meta_upgrades\": 9, \"settings\": 7}")
+    file.close()
+
+    loaded = save_manager.load_save_data()
+    if typeof(loaded.get("meta_upgrades")) != TYPE_DICTIONARY:
+        failures.append("Corrupted meta_upgrades should fall back to a default dictionary")
+    elif int(loaded["meta_upgrades"].get("attack", -1)) != 0:
+        failures.append("Corrupted meta_upgrades should restore default attack level")
+
+    if typeof(loaded.get("settings")) != TYPE_DICTIONARY:
+        failures.append("Corrupted settings should fall back to a default dictionary")
+
     save_manager.free()
     return failures

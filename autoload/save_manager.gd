@@ -83,7 +83,11 @@ func apply_run_results(reached_floor: int, earned_essence: int) -> Dictionary:
 func _merge_with_defaults(data: Dictionary) -> Dictionary:
     var merged = get_default_save_data()
     for key in data.keys():
-        if typeof(merged.get(key)) == TYPE_DICTIONARY and typeof(data[key]) == TYPE_DICTIONARY:
+        var default_value = merged.get(key)
+        if typeof(default_value) == TYPE_DICTIONARY:
+            if typeof(data[key]) != TYPE_DICTIONARY:
+                continue
+
             var nested: Dictionary = merged[key]
             for nested_key in data[key].keys():
                 nested[nested_key] = data[key][nested_key]

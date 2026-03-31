@@ -54,4 +54,11 @@ func run() -> Array[String]:
     if ids.size() != 3:
         failures.append("roll_choices() should avoid duplicate upgrade ids")
 
+    var full_pool: Array = catalog.build_candidate_pool(context)
+    for candidate in full_pool:
+        if candidate.get("id", "") == "stat_crit_up":
+            failures.append("Unsupported crit upgrade should not appear in the MVP candidate pool")
+        if candidate.get("id", "") == "mechanic_lifesteal_up":
+            failures.append("Unsupported lifesteal upgrade should not appear in the MVP candidate pool")
+
     return failures

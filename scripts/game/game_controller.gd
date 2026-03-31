@@ -306,10 +306,11 @@ func _advance_floor() -> void:
     _begin_floor(int(_run_state.get_snapshot().get("floor", 1)))
 
 func _spawn_boss() -> void:
+    var boss_id = str(_current_plan.get("boss_id", "boss_titan"))
     var boss = EnemyScene.instantiate()
     _enemy_container.add_child(boss)
     boss.global_position = Vector2(_world_width - 160, _ground_y)
-    boss.configure(self, "boss_titan", _spawner.get_enemy_definition("boss_titan"), _current_plan)
+    boss.configure(self, boss_id, _spawner.get_enemy_definition(boss_id), _current_plan)
     boss.died.connect(_on_enemy_died)
 
 func _spawn_enemy(enemy_id: String) -> void:
@@ -370,7 +371,7 @@ func _save_run_results_if_needed() -> void:
     if _run_results_saved:
         return
     var snapshot: Dictionary = _run_state.get_snapshot()
-    var reward = max(1, int(snapshot.get("floor", 1)) * 3 + int(snapshot.get("kills", 0)) / 8)
+    var reward = int(max(1.0, float(int(snapshot.get("floor", 1)) * 3) + float(int(snapshot.get("kills", 0))) / 8.0))
     _save_manager.apply_run_results(int(snapshot.get("floor", 1)), reward)
     _run_results_saved = true
 

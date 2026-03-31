@@ -40,6 +40,7 @@ func configure(game_controller: Node, snapshot: Dictionary) -> void:
 
 func sync_from_snapshot(snapshot: Dictionary, keep_ratio: bool = false) -> void:
     var previous_ratio = 1.0
+    var previous_max_health = max_health
     if max_health > 0.0:
         previous_ratio = current_health / max_health
 
@@ -48,7 +49,8 @@ func sync_from_snapshot(snapshot: Dictionary, keep_ratio: bool = false) -> void:
     if keep_ratio:
         current_health = clamp(max_health * previous_ratio, 1.0, max_health)
     else:
-        current_health = min(max(current_health, max_health), max_health)
+        var max_health_delta = max(max_health - previous_max_health, 0.0)
+        current_health = clamp(current_health + max_health_delta, 0.0, max_health)
 
     health_changed.emit(current_health, max_health)
     _sync_weapons(snapshot.get("weapon_levels", {}))

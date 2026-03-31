@@ -8,6 +8,7 @@ const TEST_SCRIPTS = [
     "res://tests/test_enemy_spawner.gd",
     "res://tests/test_ad_service.gd",
     "res://tests/test_scene_smoke.gd",
+    "res://tests/test_player_sync.gd",
 ]
 
 func _initialize() -> void:
