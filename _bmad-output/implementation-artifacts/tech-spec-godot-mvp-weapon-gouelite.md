@@ -2,7 +2,7 @@
 title: 'Godot MVP：极简横版武器进化爬塔 Roguelite'
 slug: 'godot-mvp-weapon-gouelite'
 created: '2026-03-31T14:50:00+08:00'
-status: 'ready-for-dev'
+status: 'Implementation Complete'
 stepsCompleted: [1, 2, 3, 4]
 tech_stack:
   - 'Godot 4.6.1'
@@ -124,17 +124,17 @@ UI 流程与本地存档，最后补全 README、LICENSE 与 Git 交付。
 
 ### Tasks
 
-- [ ] Task 1: 初始化 Godot 项目与基础目录
+- [x] Task 1: 初始化 Godot 项目与基础目录
   - File: `project.godot`
   - Action: 创建项目配置、输入映射、主场景与 Autoload 注册。
   - Notes: 输入至少包含 `move_left`、`move_right`、`ui_accept`、`restart_run`。
-- [ ] Task 2: 创建占位资源与根场景
+- [x] Task 2: 创建占位资源与根场景
   - File: `icon.svg`
   - File: `scenes/main_menu.tscn`
   - File: `scenes/game/game_scene.tscn`
   - Action: 建立主菜单与战斗主场景的基础节点树、背景、地面与 UI 容器。
   - Notes: 资源允许使用矢量/色块占位，优先保证可运行。
-- [ ] Task 3: 建立核心数据与服务层
+- [x] Task 3: 建立核心数据与服务层
   - File: `scripts/data/balance.gd`
   - File: `scripts/data/weapon_catalog.gd`
   - File: `scripts/data/upgrade_catalog.gd`
@@ -143,7 +143,7 @@ UI 流程与本地存档，最后补全 README、LICENSE 与 Git 交付。
   - File: `autoload/ad_service.gd`
   - Action: 定义玩家、怪物、层数、经验曲线、四把武器的等级数据、升级池和本地存档结构。
   - Notes: 存档需覆盖最高层、局外货币、攻击/生命升级等级与设置位。
-- [ ] Task 4: 建立 headless 测试基建
+- [x] Task 4: 建立 headless 测试基建
   - File: `tests/run_all_tests.gd`
   - File: `tests/test_weapon_catalog.gd`
   - File: `tests/test_upgrade_catalog.gd`
@@ -151,24 +151,24 @@ UI 流程与本地存档，最后补全 README、LICENSE 与 Git 交付。
   - File: `tests/test_run_state.gd`
   - Action: 先写失败测试，再实现通过，用于验证目录数据、升级抽取、进度保存与爬塔推进。
   - Notes: 测试命令必须能在 `--headless --script` 下执行。
-- [ ] Task 5: 实现主菜单与局外成长
+- [x] Task 5: 实现主菜单与局外成长
   - File: `scripts/ui/main_menu.gd`
   - File: `scenes/main_menu.tscn`
   - Action: 展示开始按钮、最高层、局外货币、攻击升级、生命升级、广告入口状态。
   - Notes: 菜单数据完全来自 `SaveManager`。
-- [ ] Task 6: 实现玩家与基础敌人
+- [x] Task 6: 实现玩家与基础敌人
   - File: `scenes/entities/player.tscn`
   - File: `scripts/entities/player.gd`
   - File: `scenes/entities/enemy.tscn`
   - File: `scripts/entities/enemy.gd`
   - Action: 玩家左右移动、受伤、死亡；敌人朝玩家移动、接触伤害、死亡掉经验/即时结算。
   - Notes: 普通怪、厚血怪、快速怪、远程怪至少通过参数差异化。
-- [ ] Task 7: 实现刷怪、层数推进与 Boss
+- [x] Task 7: 实现刷怪、层数推进与 Boss
   - File: `scripts/game/enemy_spawner.gd`
   - File: `scripts/game/game_controller.gd`
   - Action: 按层数生成怪物波次，控制层计时、Boss 层判定、下一层过渡和难度递增。
   - Notes: 第 5 层必须刷出 Boss，后续支持按 5 层节奏循环。
-- [ ] Task 8: 实现四把武器与攻击表现
+- [x] Task 8: 实现四把武器与攻击表现
   - File: `scripts/weapons/weapon_base.gd`
   - File: `scripts/weapons/boomerang_sword.gd`
   - File: `scripts/weapons/split_bow.gd`
@@ -180,26 +180,26 @@ UI 流程与本地存档，最后补全 README、LICENSE 与 Git 交付。
   - File: `scenes/weapons/lightning_effect.tscn`
   - Action: 为四把武器提供独立攻击逻辑、升级成长与一次明确进化体感。
   - Notes: 起始默认拥有回旋剑，其他武器通过升级解锁。
-- [ ] Task 9: 实现经验、升级三选一与 Build 成型
+- [x] Task 9: 实现经验、升级三选一与 Build 成型
   - File: `scripts/ui/upgrade_panel.gd`
   - File: `scenes/ui/upgrade_panel.tscn`
   - File: `scripts/game/game_controller.gd`
   - Action: 经验累积到阈值时暂停战斗，弹出三选一，应用数值与武器升级，避免无效重复项。
   - Notes: 升级选项需混合属性、机制与武器类强化。
-- [ ] Task 10: 实现 Game Over、复活广告预留、Restart 与结果入库
+- [x] Task 10: 实现 Game Over、复活广告预留、Restart 与结果入库
   - File: `scripts/ui/game_over_panel.gd`
   - File: `scenes/ui/game_over_panel.tscn`
   - File: `autoload/ad_service.gd`
   - File: `autoload/save_manager.gd`
   - Action: 战败后展示本局层数、击杀、Build 摘要；支持一次广告复活占位、返回主菜单、重新开始并记录最高层与货币。
   - Notes: 桌面运行时广告按钮可走 stub 流程并明确提示未接 SDK。
-- [ ] Task 11: 编写运行文档与开源文件
+- [x] Task 11: 编写运行文档与开源文件
   - File: `README.md`
   - File: `LICENSE`
   - File: `docs/README.md`
   - Action: 说明项目定位、目录、运行命令、测试命令、后续微信小游戏适配方向，并加入 MIT License。
   - Notes: README 需覆盖桌面运行与 headless 测试。
-- [ ] Task 12: 完成里程碑提交与远端推送
+- [x] Task 12: 完成里程碑提交与远端推送
   - File: `.git`
   - Action: 分阶段提交规格、工程骨架、核心玩法、完善收尾，并推送到 `origin/main`。
   - Notes: 若远端默认分支为空，则创建并推送 `main`。
